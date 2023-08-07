@@ -28,17 +28,17 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd /server  # Change to your backend directory
+        cd ./server  # Change to your backend directory
         npm install
 
     - name: Build React app
       run: |
-        cd /client  # Change to your frontend directory
+        cd ./client  # Change to your frontend directory
         npm install
         npm run build
 
     - name: Start Express server
       run: |
-        cd /server  # Change to your backend directory
+        cd ./server  # Change to your backend directory
         npm run start
         
