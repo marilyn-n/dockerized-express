@@ -26,8 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci --prefix server/
-    - run: npm run start --prefix server/
-    - run: npm ci --prefix client/
-    - run: npm run start --prefix client/
+    - run: npm ci --prefix dockerized-express/server/
+    - run: npm run start --prefix dockerized-express/server/
     - run: npm test
