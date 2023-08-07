@@ -45,3 +45,6 @@ jobs:
         cd ./server  # Change to your backend directory
         npm run start
         
+    - name: Stop Express server
+      run: |
+          pkill -f "node server/app.js"  # Adjust the command based on your setup
