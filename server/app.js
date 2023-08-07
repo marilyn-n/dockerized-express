@@ -1,11 +1,12 @@
 const dotenv = require('dotenv');
 const express = require('express');
+const cors = require('cors');
 const aws = require('aws-sdk');
 const bodyParser = require('body-parser');
 const {createBucket, deleteBucket, readFile, updateFile} = require("./helpers/helpers");
 dotenv.config(); // Load environment variables from .env file
 const app = express();
-const port = 3000; // Choose a port number
+const port = 9000; // Choose a port number
 
 // Configure AWS SDK with your credentials
 aws.config.update({
@@ -15,10 +16,10 @@ aws.config.update({
 
 // // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+// Allow requests from all origins
+app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello, Express!');
-});
+app.get('/', (req, res) => res.json({data: [1, 2, 3]}));
 
 // Create a new JSON object in the S3 bucket
 app.post('/create', (req, res) => createBucket(req, res));
