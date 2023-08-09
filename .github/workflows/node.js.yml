@@ -43,8 +43,13 @@ jobs:
     - name: Start Express server
       run: |
         cd ./server  # Change to your backend directory
-        npm run start
+        npm run start &
         
-    - name: Stop Express server
+    - name: Wait for server to start
+      run: sleep 10  # Adjust the sleep duration as needed
+        
+    - name: Test server availability
       run: |
-          pkill -f "node server/app.js"  # Adjust the command based on your setup
+          sleep 5  # Give the server additional time to fully start
+          curl -sSf http://localhost:9000/  # Replace with your server's URL
+
